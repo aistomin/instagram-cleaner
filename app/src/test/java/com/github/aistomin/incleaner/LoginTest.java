@@ -15,6 +15,7 @@ public final class LoginTest {
     /**
      * Test for playing around with Instagram login.
      * @throws Exception If something goes wrong.
+     * @todo: Issue #1: Let's try to implement something like http://siteoftutorials.com/instagram-api-android-tutorial/
      */
     @Test
     public void testLogin() throws Exception {
