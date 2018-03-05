@@ -12,6 +12,10 @@ import org.junit.Test;
  */
 public final class LoginTest {
 
+    /**
+     * Test for playing around with Instagram login.
+     * @throws Exception If something goes wrong.
+     */
     @Test
     public void testLogin() throws Exception {
         Assert.assertEquals(
