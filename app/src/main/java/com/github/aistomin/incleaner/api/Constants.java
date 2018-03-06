@@ -5,6 +5,6 @@ package com.github.aistomin.incleaner.api;
  */
 public final class Constants {
     public static final String BASE_URL = "https://api.instagram.com/";
-    public static final String CLIENT_ID = "YOUR_CLIENT_ID";
+    public static final String CLIENT_ID = "YOUR_CLIENT_ID"; // http://siteoftutorials.com/instagram-api-android-tutorial/
     public static final String REDIRECT_URI = "https://instagram.com/";
 }

@@ -20,16 +20,6 @@ public class AuthenticationDialog extends Dialog {
     private final AuthenticationListener listener;
     private Context context;
 
-    private WebView web_view;
-
-    private final String url = Constants.BASE_URL
-        + "oauth/authorize/?client_id="
-        + Constants.CLIENT_ID
-        + "&redirect_uri="
-        + Constants.REDIRECT_URI
-        + "&response_type=token"
-        + "&display=touch&scope=public_content";
-
     public AuthenticationDialog(@NonNull Context context, AuthenticationListener listener) {
         super(context);
         this.context = context;
@@ -44,11 +34,19 @@ public class AuthenticationDialog extends Dialog {
     }
 
     private void initializeWebView() {
-        web_view = (WebView) findViewById(R.id.web_view);
+        WebView web_view = (WebView) findViewById(R.id.web_view);
+        String url = Constants.BASE_URL
+            + "oauth/authorize/?client_id="
+            + Constants.CLIENT_ID
+            + "&redirect_uri="
+            + Constants.REDIRECT_URI
+            + "&response_type=token"
+            + "&display=touch&scope=public_content";
         web_view.loadUrl(url);
         web_view.setWebViewClient(new WebViewClient() {
 
             boolean authComplete = false;
+
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
@@ -64,7 +62,7 @@ public class AuthenticationDialog extends Dialog {
                     Uri uri = Uri.parse(url);
                     access_token = uri.getEncodedFragment();
                     // get the whole token after the '=' sign
-                    access_token = access_token.substring(access_token.lastIndexOf("=")+1);
+                    access_token = access_token.substring(access_token.lastIndexOf("=") + 1);
                     Log.i("", "CODE : " + access_token);
                     authComplete = true;
                     listener.onCodeReceived(access_token);

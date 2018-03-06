@@ -2,6 +2,7 @@ package com.github.aistomin.incleaner;
 
 import com.github.aistomin.incleaner.api.Constants;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by aistomin on 06.03.18.

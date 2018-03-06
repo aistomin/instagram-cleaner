@@ -24,7 +24,6 @@ import retrofit2.Response;
 public class FeedActivity extends AppCompatActivity {
 
     private EditText etSearch;
-    private ListView lvFeed;
 
     private SimpleListViewAdapter lvAdapter;
     private ArrayList<Data> data = new ArrayList<>();
@@ -40,7 +39,7 @@ public class FeedActivity extends AppCompatActivity {
         Intent i = this.getIntent();
         access_token = i.getStringExtra("access_token");
 
-        lvFeed = (ListView) findViewById(R.id.lv_feed);
+        ListView lvFeed = (ListView) findViewById(R.id.lv_feed);
         etSearch = (EditText) findViewById(R.id.et_search);
 
         // Set the listview adapter
@@ -54,7 +53,7 @@ public class FeedActivity extends AppCompatActivity {
 
                 // Don't search if the etSearch is emtpy when pressing the done button
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    if(etSearch.getText().length() <= 0){
+                    if (etSearch.getText().length() <= 0) {
                         Toast.makeText(getApplicationContext(), "Enter a search tag", Toast.LENGTH_SHORT).show();
 
                     } else {
@@ -65,7 +64,7 @@ public class FeedActivity extends AppCompatActivity {
                     }
 
                     // Close the soft keyboard
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                     return true;
                 }
@@ -82,7 +81,7 @@ public class FeedActivity extends AppCompatActivity {
             public void onResponse(Call<InstagramResponse> call, Response<InstagramResponse> response) {
 
                 if (response.body() != null) {
-                    for(int i = 0; i < response.body().getData().length; i++){
+                    for (int i = 0; i < response.body().getData().length; i++) {
                         data.add(response.body().getData()[i]);
                     }
 
