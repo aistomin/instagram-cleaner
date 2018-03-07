@@ -4,41 +4,43 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 
 /**
- * A login screen that offers login via email/password.
+ * The main screen of the application which displays "Get Access Token" button.
  */
-public class MainActivity extends AppCompatActivity implements AuthenticationListener {
+public class MainActivity extends AppCompatActivity
+    implements AuthenticationListener {
 
-    private AuthenticationDialog auth_dialog;
+    /**
+     * Instagram authentication dialog.
+     */
+    private AuthenticationDialog dialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(final Bundle bundle) {
+        super.onCreate(bundle);
         setContentView(R.layout.activity_login);
-
-        Button btn_get_access_token = (Button) findViewById(R.id.btn_get_access_token);
-
-        btn_get_access_token.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                auth_dialog = new AuthenticationDialog(MainActivity.this, MainActivity.this);
-                auth_dialog.setCancelable(true);
-                auth_dialog.show();
+        findViewById(R.id.btn_get_access_token).setOnClickListener(
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog = new AuthenticationDialog(
+                        MainActivity.this, MainActivity.this
+                    );
+                    dialog.setCancelable(true);
+                    dialog.show();
+                }
             }
-        });
+        );
     }
 
     @Override
-    public void onCodeReceived(String access_token) {
-        if (access_token == null) {
-            auth_dialog.dismiss();
+    public void onCodeReceived(final String token) {
+        if (token == null) {
+            dialog.dismiss();
         }
-
-        Intent i = new Intent(MainActivity.this, FeedActivity.class);
-        i.putExtra("access_token", access_token);
-        startActivity(i);
-
+        final Intent intent = new Intent(MainActivity.this, FeedActivity.class);
+        intent.putExtra("access_token", token);
+        startActivity(intent);
     }
 }
