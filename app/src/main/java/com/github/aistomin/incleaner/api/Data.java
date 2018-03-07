@@ -6,6 +6,7 @@ package com.github.aistomin.incleaner.api;
 public final class Data {
 
     private Images images;
+
     private User user;
 
     public Images getImages() {
@@ -18,28 +19,28 @@ public final class Data {
 
     public class User {
 
-        private String profile_picture;
+        private String picture;
 
-        private String full_name;
+        private String name;
 
-        public String getProfile_picture() {
-            return profile_picture;
+        public String getPicture() {
+            return picture;
         }
 
-        public String getFull_name() {
-            return full_name;
+        public String getName() {
+            return name;
         }
     }
 
     public class Images {
 
-        private Standard_resolution standard_resolution;
+        private StandardResolution resolution;
 
-        public Standard_resolution getStandard_resolution() {
-            return standard_resolution;
+        public StandardResolution getResolution() {
+            return resolution;
         }
 
-        public class Standard_resolution {
+        public class StandardResolution {
 
             private String url;
 

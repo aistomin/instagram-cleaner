@@ -37,15 +37,15 @@ public class SimpleListViewAdapter extends ArrayAdapter<Data> {
         ImageView iv_photo = (ImageView) curView.findViewById(R.id.iv_photo);
         ImageView iv_profile = (ImageView) curView.findViewById(R.id.iv_profile);
 
-        tv_user_fullname.setText(data.get(position).getUser().getFull_name());
+        tv_user_fullname.setText(data.get(position).getUser().getName());
 
         Picasso.with(context)
-            .load(data.get(position).getUser().getProfile_picture())
+            .load(data.get(position).getUser().getPicture())
             .resize(100, 100)
             .centerInside()
             .into(iv_profile);
         Picasso.with(context)
-            .load(data.get(position).getImages().getStandard_resolution().getUrl())
+            .load(data.get(position).getImages().getResolution().getUrl())
             .into(iv_photo);
 
         return curView;
