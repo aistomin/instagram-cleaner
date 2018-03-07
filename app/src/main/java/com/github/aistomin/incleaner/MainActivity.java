@@ -9,7 +9,7 @@ import android.widget.Button;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements AuthenticationListener {
+public class MainActivity extends AppCompatActivity implements AuthenticationListener {
 
     private AuthenticationDialog auth_dialog;
 
@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationLi
         btn_get_access_token.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                auth_dialog = new AuthenticationDialog(LoginActivity.this, LoginActivity.this);
+                auth_dialog = new AuthenticationDialog(MainActivity.this, MainActivity.this);
                 auth_dialog.setCancelable(true);
                 auth_dialog.show();
             }
@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements AuthenticationLi
             auth_dialog.dismiss();
         }
 
-        Intent i = new Intent(LoginActivity.this, FeedActivity.class);
+        Intent i = new Intent(MainActivity.this, FeedActivity.class);
         i.putExtra("access_token", access_token);
         startActivity(i);
 
